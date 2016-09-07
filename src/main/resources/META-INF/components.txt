@@ -1,0 +1,10 @@
+org.projectsforge.xwiki.booktools.macro.CiteMacro
+org.projectsforge.xwiki.booktools.macro.BibliographyMacro
+org.projectsforge.xwiki.booktools.service.BookToolsScriptService
+org.projectsforge.xwiki.booktools.service.DefaultBookToolsService
+org.projectsforge.xwiki.booktools.listener.DocumentUpdaterListener
+org.projectsforge.xwiki.booktools.listener.ConfigurationUpdaterListener
+org.projectsforge.xwiki.booktools.listener.IndexUpdaterListener
+org.projectsforge.xwiki.booktools.job.ConfigurationUpdatedJob
+org.projectsforge.xwiki.booktools.listener.IntegrityListener
+org.projectsforge.xwiki.booktools.listener.InitializationListener
