@@ -74,9 +74,7 @@ public class CiteMacro extends AbstractMacro<CiteMacroParameters> {
 
     XWikiContext xcontext = xwikiContextProvider.get();
 
-    System.err.println("Action = " + xcontext.getAction());
-
-    if ("edit".equals(xcontext.getAction())) {
+    if ("edit".equals(xcontext.getAction()) || "get".equals(xcontext.getAction())) {
       // in edit mode, we simply display the keys
       List<Block> blocks = parse("**[" + ((parameters.getKeys() == null) ? "" : parameters.getKeys().trim())
           + (parameters.isHidden() ? "|HIDDEN" : "") + "]**", "xwiki/2.1").getChildren();

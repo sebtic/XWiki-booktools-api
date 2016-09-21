@@ -96,7 +96,7 @@ public class BibliographyMacro extends AbstractMacro<BibliographyMacroParameters
 
     XWikiContext context = xwikiContextProvider.get();
 
-    if ("edit".equals(context.getAction())) {
+    if ("edit".equals(context.getAction()) || "get".equals(context.getAction())) {
       return Collections.<Block> emptyList();
     }
 
@@ -190,13 +190,13 @@ public class BibliographyMacro extends AbstractMacro<BibliographyMacroParameters
       // handle bibliography
       switch (scope) {
         case CITED:
-          results = makeBookToolsBlocks(index, bibliography, index.getKeys(), scope);
+          results = makeBibliographyBlocks(index, bibliography, index.getKeys(), scope);
           break;
         case HIDDEN:
           results = Collections.<Block> emptyList();
           break;
         case PAGE:
-          results = makeBookToolsBlocks(index, bibliography, localIndex.getKeys(), scope);
+          results = makeBibliographyBlocks(index, bibliography, localIndex.getKeys(), scope);
           break;
         default:
           results = Collections
@@ -222,7 +222,7 @@ public class BibliographyMacro extends AbstractMacro<BibliographyMacroParameters
    * @throws MacroExecutionException
    *           the macro execution exception
    */
-  private List<Block> makeBookToolsBlocks(Index index, Bibliography bibliography, List<String> citedKeys, Scope scope)
+  private List<Block> makeBibliographyBlocks(Index index, Bibliography bibliography, List<String> citedKeys, Scope scope)
       throws MacroExecutionException {
     Set<String> lookup = new HashSet<>(citedKeys);
 
@@ -311,7 +311,7 @@ public class BibliographyMacro extends AbstractMacro<BibliographyMacroParameters
         results.add(parseContent(text, true));
       }
     } catch (IllegalArgumentException ex) {
-      logger.warn("Could not make citations for " + cite.getParameter(CiteMacroParameters.PARAM_KEYS), ex);
+      logger.debug("Could not make citations for " + cite.getParameter(CiteMacroParameters.PARAM_KEYS), ex);
     }
     return results;
   }
