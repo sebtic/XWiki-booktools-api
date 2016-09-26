@@ -439,6 +439,10 @@ public class DocumentWalker {
         XWikiContext context = service.getContext();
         try {
           this.document = context.getWiki().getDocument(documentReference, context);
+          if (this.document.isNew()) {
+            this.document.setCreatorReference(context.getUserReference());
+            this.document.setContentAuthorReference(context.getUserReference());
+          }
         } catch (XWikiException ex) {
           logger.warn("An error occurred while loading " + documentReference, ex);
         }

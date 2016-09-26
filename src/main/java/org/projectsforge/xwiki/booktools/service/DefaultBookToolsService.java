@@ -63,6 +63,7 @@ import com.xpn.xwiki.XWikiContext;
 import com.xpn.xwiki.XWikiException;
 import com.xpn.xwiki.doc.XWikiDocument;
 import com.xpn.xwiki.objects.BaseObject;
+import com.xpn.xwiki.user.api.XWikiRightService;
 
 import de.undercouch.citeproc.CSL;
 import de.undercouch.citeproc.ListItemDataProvider;
@@ -198,6 +199,8 @@ public class DefaultBookToolsService implements BookToolsService {
         XWikiDocument adminGroupDoc = wiki.getDocument(adminGroupRef, context);
         adminGroupDoc.setHidden(true);
         adminGroupDoc.newXObject(XWIKI_GROUPS_CLASS, context);
+        adminGroupDoc.setAuthor(XWikiRightService.SUPERADMIN_USER_FULLNAME);
+        adminGroupDoc.setContentAuthor(XWikiRightService.SUPERADMIN_USER_FULLNAME);
         wiki.saveDocument(adminGroupDoc, context);
       } catch (XWikiException ex) {
         logger.warn("An error occurred", ex);
