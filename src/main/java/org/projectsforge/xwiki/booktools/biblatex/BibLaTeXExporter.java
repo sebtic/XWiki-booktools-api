@@ -87,7 +87,9 @@ public class BibLaTeXExporter {
           joiner.add(escapeUpperAndComa(name.getSuffix()));
         }
 
-        joiner.add(" " + escapeUpperAndComa(name.getGiven()));
+        if (StringUtils.isNotBlank(name.getGiven())) {
+          joiner.add(" " + escapeUpperAndComa(name.getGiven()));
+        }
 
         allNames.add(joiner.toString());
       }
