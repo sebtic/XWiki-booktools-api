@@ -259,7 +259,7 @@ public class BibLaTeXExporter {
         addEscapedField(entry, "organization", itemData.getPublisher());
         break;
       default:
-        addEscapedField(entry, "published", itemData.getPublisher());
+        addEscapedField(entry, "publisher", itemData.getPublisher());
     }
     addEscapedField(entry, "title", itemData.getTitle());
 
